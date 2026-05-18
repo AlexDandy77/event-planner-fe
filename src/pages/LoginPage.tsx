@@ -2,7 +2,7 @@ import { routePaths } from "~/utils/routePaths";
 
 import { Link } from "react-router";
 
-const LoginPage: React.FC = () => {
+function LoginPage() {
     return (
         <section className="space-y-4">
             <p className="text-sm font-semibold uppercase text-emerald-700">
@@ -21,6 +21,6 @@ const LoginPage: React.FC = () => {
             </Link>
         </section>
     );
-};
+}
 
 export default LoginPage;

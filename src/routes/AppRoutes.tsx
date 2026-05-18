@@ -9,7 +9,11 @@ const navigationItems = [
     { label: "Register", path: routePaths.Register },
 ];
 
-const AppRoutes: React.FC = () => {
+type AuthLayoutProps = {
+    children: React.ReactNode;
+};
+
+function AuthLayout({ children }: AuthLayoutProps) {
     const location = useLocation();
 
     return (
@@ -49,31 +53,42 @@ const AppRoutes: React.FC = () => {
                 </div>
             </header>
             <main className="mx-auto w-full max-w-6xl px-6 py-12">
-                <Routes>
-                    <Route
-                        path={routePaths.Index}
-                        element={<Navigate replace to={routePaths.Calendar} />}
-                    />
-                    <Route
-                        path={routePaths.Calendar}
-                        element={<CalendarPage />} 
-                    />
-                    <Route 
-                        path={routePaths.Login}
-                        element={<LoginPage />}  
-                    />
-                    <Route
-                        path={routePaths.Register}
-                        element={<RegisterPage />}
-                    />
-                    <Route
-                        path="*"
-                        element={<Navigate replace to={routePaths.Calendar} />}
-                    />
-                </Routes>
+                {children}
             </main>
         </div>
     );
-};
+}
+
+function AppRoutes() {
+    return (
+        <Routes>
+            <Route
+                path={routePaths.Index}
+                element={<Navigate replace to={routePaths.Calendar} />}
+            />
+            <Route path={routePaths.Calendar} element={<CalendarPage />} />
+            <Route
+                path={routePaths.Login}
+                element={
+                    <AuthLayout>
+                        <LoginPage />
+                    </AuthLayout>
+                }
+            />
+            <Route
+                path={routePaths.Register}
+                element={
+                    <AuthLayout>
+                        <RegisterPage />
+                    </AuthLayout>
+                }
+            />
+            <Route
+                path="*"
+                element={<Navigate replace to={routePaths.Calendar} />}
+            />
+        </Routes>
+    );
+}
 
 export default AppRoutes;

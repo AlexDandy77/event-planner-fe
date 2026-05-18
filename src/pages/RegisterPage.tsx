@@ -2,7 +2,7 @@ import { routePaths } from "~/utils/routePaths";
 
 import { Link } from "react-router";
 
-const RegisterPage: React.FC = () => {
+function RegisterPage() {
     return (
         <section className="space-y-4">
             <p className="text-sm font-semibold uppercase text-emerald-700">
@@ -21,6 +21,6 @@ const RegisterPage: React.FC = () => {
             </Link>
         </section>
     );
-};
+}
 
 export default RegisterPage;
